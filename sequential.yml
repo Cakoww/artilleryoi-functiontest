@@ -1,0 +1,19 @@
+config:
+  target: 'https://numberfunctionapp.azurewebsites.net/api'
+  phases:
+    - duration: 10
+      arrivalRate: 1
+scenarios:
+  - flow:
+      - post:
+          url: "/HttpTrigger1?code=BPoEVhc/AZa9l0FJlgWXmxHia3bSk4D5agIGoSTayoI/Y5lhiVCNXA=="
+          capture:
+            json: "$.number"
+            as: "number"
+      - post:
+        - get:
+            url: "/HttpTrigger1?code=BPoEVhc/AZa9l0FJlgWXmxHia3bSk4D5agIGoSTayoI/Y5lhiVCNXA==?number=1"
+            capture:
+              json: "$.number"
+              as: "number"
+        count: 100
